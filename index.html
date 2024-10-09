@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="./jack.ico">
+
+    <meta property="og:title" content="Spook-E-Vite" />
+    <meta property="og:image" content="./preview2.jpg" />
+
+
+    <title>Spook-E-Vite</title>
+
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            background: black;
+            font-family: 'Arial', sans-serif;
+            overflow-x: clip;
+            overflow-y: scroll;
+            margin-bottom: 50px;
+        }
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: #5e16db;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: #000;
+            position: absolute;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all ease-in-out 2s;
+            animation: wiggle 2s infinite;
+            -webkit-transition: -webkit-transform 2s ease-in;
+        }
+        .envelope:hover:before{
+            transform-origin: 100% 100%;
+            transform: rotateX(360deg) translateY(-100px);
+        }
+
+        .envelope.open{
+            animation: blowup 1s 1;
+        }
+
+        .envelope.open:before{
+            transform-origin: 100% 100%;
+            transform: rotateX(360deg) translateY(-100px);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid #3e1e75;
+            top: 0;
+            left: 0;
+            transform: rotate(180deg);
+        }
+    
+        
+        .hidden {
+            visibility: hidden;
+            display: none;
+        }
+        .invitation {
+           opacity: 0;
+           width: 90%;
+           max-width: 500px;
+           height: auto;
+           text-align: center;
+           color: white;
+           background-color: rgba(33, 33, 33, 0.6);
+           position: absolute;
+           border-radius: 25px;
+
+           top: 0;
+           left: 0;
+           bototm: 0;
+           right:0;
+           margin: auto;
+           z-index: 3;
+           font-size: 30px;
+           padding: 10px;
+           margin-top: 120px;
+           transition: all 1.5s ease-in;
+           -webkit-transition: all 1.5s ease-in;
+       }
+       .background {
+           opacity: 0;
+           position: absolute;
+           width: 100%;
+           height: 100%;
+           top: 0;
+           left: 0;
+           background-image: url('./tree.jpg');
+           background-repeat: no-repeat;
+           background-size: contain;
+           background-position: center;
+           z-index: 3;
+           filter:blur(4px);
+           transition: all 1.5s;
+           -webkit-transition: all 1.5s ease-in;
+       }
+
+
+    .bob{
+       animation: bob 5s infinite ease-in-out;
+    }	
+   
+
+    @keyframes bob {
+        0%, 100% { transform: translateY(-5px); }
+        50% { transform: translateY(-12px); }
+    }
+
+    @keyframes blowup {
+       0% {  }
+       100% { transform: scale(500%); opacity: 0; }
+    }
+
+
+    @keyframes wiggle {
+       0% { transform: rotate(0deg) }
+       90% { transform: rotate(0deg) }
+       93% { transform: rotate(5deg) }
+       96% { transform: rotate(-5deg) }
+       100% { transform: rotate(0deg) }
+    }
+
+    .wiggler {
+       animation: wiggle 2s infinite;
+    }
+    
+
+
+    @keyframes move-background {
+      from {
+          -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+          -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+    @-webkit-keyframes move-background {
+      from {
+          -webkit-transform: translate3d(0px, 0px, 0px);
+      }
+      to { 
+          -webkit-transform: translate3d(1000px, 0px, 0px);
+      }
+    }
+
+    @-moz-keyframes move-background {    
+    	from {
+    		-webkit-transform: translate3d(0px, 0px, 0px);
+    	}
+    	to { 
+    		-webkit-transform: translate3d(1000px, 0px, 0px);
+    	}
+    }
+
+    @-webkit-keyframes move-background {
+    	from {
+    		-webkit-transform: translate3d(0px, 0px, 0px);
+    	}
+    	to { 
+    		-webkit-transform: translate3d(1000px, 0px, 0px);
+    	}
+    }
+
+    .background-container{
+    	position: fixed;
+        overflow-x: clip;
+        overflow-y: scroll;
+        top: 0;
+        left:0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .stars {
+       background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       display: block;
+       z-index: 0;
+    }
+
+    .twinkling{
+    	width:10000px;
+    	height: 100%;
+    	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+    	background-size: 1000px 1000px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        
+        -moz-animation:move-background 40s linear infinite;
+        -ms-animation:move-background 40s linear infinite;
+        -o-animation:move-background 40s linear infinite;
+        -webkit-animation:move-background 40s linear infinite;
+        animation:move-background 40s linear infinite;
+
+    }
+
+    @font-face {
+        font-family: "My Custom Font";
+        src: url('./font.ttf') format("truetype");
+    }
+    p.fancyfont { 
+        font-family: "My Custom Font", Verdana, Tahoma;
+        padding: 5px;
+        margin: 5px;
+        margin-bottom: -0.3em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .center{
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       top: 0;
+       left: 0;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       z-index: 3;
+    }
+
+    .name{
+        z-index: 5;
+        font-size: 40px;
+        color: white;
+
+    }
+
+    .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+    }
+
+    .button {
+        padding: 10px 20px;
+        padding-bottom: 0px;
+        cursor: pointer;
+        border: 0;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-family: "My Custom Font", Verdana, Tahoma;
+        font-size: 30px;
+        margin-bottom: -0.5em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .text-display {
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: center;
+        font-family: "My Custom Font", Verdana, Tahoma;
+        font-size: 30px;
+        margin-bottom: -0.3em;
+        letter-spacing: .08rem;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .enlarged {
+        font-size: 40px;
+        transform: translateY(-10px);
+    }
+
+
+    </style>
+
+</head>
+
+
+<body>
+  <div id='oldbg'>
+    <div class="background-container"></div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+</div>
+<div id="table" class="background hidden"></div>
+
+<div class='center'>
+    <div class="envelope" id="envelope">
+     <p id="recipient" class="fancyfont name" > </p>
+    </div>
+</div>
+
+<div class="invitation hidden" style="min-height: 75%;" id="invitation">
+	<p class='fancyfont'> Esteemed guest, you are </p>
+    <p class='fancyfont' style="font-size: 60px" >Cordially Invited</p>
+    <p class='fancyfont' style='margin-top: 0; ont-size: 40px;'>Please join us for a decadant candlelit dinner under the canopy of the old oak tree.</p>
+    <br>
+    <div class="button-container">
+        <button class="button" onclick="changeText('Menu')">Menu</button>
+        <button class="button enlarged bob" onclick="changeText('Details')">Details</button>
+        <button class="button" onclick="changeText('Itinerary')">Itinerary</button>
+    </div>
+    <hr style="margin-top: 20px;">
+
+    <div class="text-display" id="Details">
+        <p class='fancyfont' style='text-align: left'>Date: October 19th</p>
+        <p class='fancyfont'style='text-align: left'>Time: 5:00 pm</p>
+        <p class='fancyfont' id="location" style='text-align: left'>Location: Sender's Residence</p>
+        <p class='fancyfont'style='text-align: left'>Attire: Casual</p>   
+    </div>
+
+    <div class="text-display hidden" id="Menu">
+           <p class='fancyfont' style='text-align: left'>Vote Below:</p>
+           <a href="https://www.surveymonkey.com/r/QM9W6S7" target="_blank" style="text-decoration: none" class="button">Vote Here</a>
+
+    </div>
+
+    <div class="text-display hidden" id="Itinerary">
+        <p class='fancyfont' style='text-align: left'>Activity: Finished By:</p>
+        <p class='fancyfont' style='text-align: left'>Arrival 5:00</p>
+        <p class='fancyfont' style='text-align: left'>House Tour 5:15</p>
+        <p class='fancyfont' style='text-align: left'>Checkers & Cornhole 6:00</p>
+        <p class='fancyfont' style='text-align: left'>Wine & Snacks 6:30</p>
+        <p class='fancyfont' style='text-align: left'>Dinner 7:30</p>
+        <p class='fancyfont' style='text-align: left'>Nightcap 8:00</p>
+        <p class='fancyfont' style='text-align: left'>Departure 8:05</p>
+    </div>
+
+
+
+</div>
+<div><p> <br> </p></div>
+
+
+
+<script>
+
+	const urlParams = new URLSearchParams(window.location.search);
+    const myName = urlParams.get('name');
+    const myPlace = urlParams.get('place');
+    const addressedTo = document.getElementById('recipient');
+    const myLocation = document.getElementById('location')
+
+    if (myName) {
+        addressedTo.textContent = 'Hello '+myName;
+    }
+    else {
+        addressedTo.textContent = 'Open';
+    }
+
+    if (myPlace) {
+        myLocation.textContent = "Location: "+myPlace.split('_').join(' ');
+    }
+
+    document.getElementById('envelope').addEventListener("animationend", function() {
+        document.getElementById('envelope').classList.add('hidden');
+        document.getElementById('invitation').classList.remove('hidden');
+        document.getElementById('invitation').style.opacity = 1;
+        document.getElementById('table').classList.remove('hidden');
+        document.getElementById('table').style.opacity = 1;
+        
+    });
+
+    document.getElementById('envelope').addEventListener('click', function() {
+    document.getElementById('envelope').classList.add('open');
+    const audio = new Audio('./silly.mp3');
+    audio.loop = false;
+    audio.play();
+   });
+
+
+
+    function changeText(selectedButton) {
+        const buttons = document.querySelectorAll('.button');
+        const textDisplay = document.getElementById('textDisplay');
+        const divs = document.querySelectorAll('.text-display');
+
+        divs.forEach(div => { div.classList.add('hidden')})
+      
+        buttons.forEach(button => {
+            button.classList.remove('enlarged');
+            button.classList.remove('bob')
+        });
+
+        const activeButton = Array.from(buttons).find(button => button.textContent === selectedButton);
+        
+        activeButton.classList.add('enlarged');
+        activeButton.classList.add('bob');
+        
+        // Change the display text based on the button clicked
+        switch (selectedButton) {
+            case 'Menu':
+                document.getElementById('Menu').classList.remove('hidden');
+                break;
+            case 'Itinerary':
+                document.getElementById('Itinerary').classList.remove('hidden');
+                break;
+            default:
+                document.getElementById('Details').classList.remove('hidden');
+                break;
+        }
+    }
+
+
+</script>
+</body>
+</html>
