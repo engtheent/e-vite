@@ -194,13 +194,8 @@
     }
 
     .background-container{
-    	position: fixed;
         overflow-x: clip;
         overflow-y: scroll;
-        top: 0;
-        left:0;
-        bottom: 0;
-        right: 0;
     }
 
     .stars {
@@ -319,11 +314,11 @@ body {
   width: 100%;
   height: 100%;
   background: black;
-  overflow: hidden;
+ 
 }
 .wrapper {
   height: 100vh;
-  width: 150vh;
+  width: 100vh;
   margin: 0 auto;
   position: relative;
 }
@@ -332,8 +327,8 @@ body {
 .stage_highlight {
   position: absolute;
   top: 0;
-  left: 25vh;
-  width: 100vh;
+  left: 25vw;
+  width: 80vw;
   height: 100%;
   overflow: hidden;
   background-image: radial-gradient(ellipse closest-side at 50% 82%, rgb(84,120,173), rgba(84,120,173,0) 100%);
@@ -348,7 +343,7 @@ body {
   height: 400vh;
   background-image: radial-gradient(ellipse, rgba(82,116,168,0.5), rgba(82,116,168,0.2) 25%, rgba(82,116,168,0) 50%);
   top:-220vh;
-  left:55vh;
+  left:25vw;
   transform: perspective(23vh) rotateX(30deg);
 }
 .spotlight {
@@ -356,7 +351,7 @@ body {
   transform: scale(1.5,3);
   position: absolute;
   top: -20vh;
-  left: calc(50% - 75vh);
+  left: calc(25% - 75vw);
 }
 .spotlight::after {
   content: '';
@@ -415,23 +410,17 @@ body {
     </div>
  </div>
 <div id="table" class="background hidden"></div>
-<div id="table" class="background hidden" style="transform: rotate(45deg);"></div>
 <div id="lights" class="hidden" style="z-index: 3;">
-    <div class="background2"></div>
     <div class="wrapper">
- 
-  
       <div class="stage_highlight"></div>
-      
       <div class="spotlight_swivel">
-        
         <div class="lamp"></div>
-        
         <div class="spotlight"></div>
-        
       </div>
-  
     </div>
+
+    
+
 </div>
 
 <div class='center'>
