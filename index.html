@@ -395,6 +395,14 @@ body {
   }
 }
 
+.fixed-image {
+    position: fixed; /* Fixed position */
+    top: 20px; /* Distance from the top of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    width: 120px; /* Set the width of the image */
+
+}
+
     </style>
 
 </head>
@@ -410,7 +418,11 @@ body {
     </div>
  </div>
 <div id="table" class="background hidden"></div>
+<div id="wine" class="hidden">
+<img src="./wine.png" style="z-index: 6 !important; transform: m" class="fixed-image spotlight_swivel">
+</div>
 <div id="lights" class="hidden" style="z-index: 3;">
+
     <div class="wrapper">
       <div class="stage_highlight"></div>
       <div class="spotlight_swivel">
@@ -498,12 +510,14 @@ body {
         document.getElementById('table').style.opacity = 1;
         document.getElementById('lights').classList.remove('hidden');
         document.getElementById('lights').style.opacity = 1;
+        document.getElementById('wine').classList.remove('hidden');
+        document.getElementById('wine').style.opacity = 1;
         
     });
 
     document.getElementById('envelope').addEventListener('click', function() {
     document.getElementById('envelope').classList.add('open');
-    const audio = new Audio('./silly.mp3');
+    const audio = new Audio('./short_silly.m4a');
     audio.loop = false;
     audio.play();
    });
